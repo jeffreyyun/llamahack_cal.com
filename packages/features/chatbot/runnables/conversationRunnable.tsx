@@ -1,11 +1,11 @@
 // LangChain APIs
 import { LLMChain } from "langchain/chains";
-import { ChatCohere } from "langchain/chat_models/cohere";
+import { ChatOpenAI } from "langchain/chat_models/openai";
 import { ConversationSummaryMemory } from "langchain/memory";
 import { PromptTemplate } from "langchain/prompts";
 
 // Environment variables
-import { COHERE_API_KEY } from "../.env";
+import { OPENAI_API_KEY } from "../.env";
 // Parameters
 import { GPT_MODEL } from "../params/models";
 // Types
@@ -14,17 +14,17 @@ import type { ConversationResponseType } from "../types/responseTypes";
 // Component 1: short-term memory
 const memory = new ConversationSummaryMemory({
   memoryKey: "chat_history",
-  llm: new ChatCohere({
+  llm: new ChatOpenAI({
     modelName: GPT_MODEL,
-    cohere_api_key: COHERE_API_KEY,
+    openAIApiKey: OPENAI_API_KEY,
     temperature: 0,
   }),
 });
 
 // Component 2: chatbot
-const model = new ChatCohere({
+const model = new ChatOpenAI({
   modelName: GPT_MODEL,
-  cohere_api_key: COHERE_API_KEY,
+  openAIApiKey: OPENAI_API_KEY,
   temperature: 0,
 });
 

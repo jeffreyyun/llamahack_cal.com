@@ -1,5 +1,5 @@
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
-import { ChatCohere } from "langchain/chat_models/cohere";
+import { ChatOpenAI } from "langchain/chat_models/openai";
 
 import { env } from "../env.mjs";
 import createBookingIfAvailable from "../tools/createBooking";
@@ -38,11 +38,10 @@ const agent = async (
     sendBookingEmail(apiKey, user, users, agentEmail),
   ];
 
-  const model = new ChatCohere({
-    model: gptModel,
-    cohere_api_key: env.COHERE_API_KEY,
+  const model = new ChatOpenAI({
+    modelName: gptModel,
+    openAIApiKey: env.OPENAI_API_KEY,
     temperature: 0.75, // todo: 0 for demo
-    user_agent: "langchain",
   });
 
   /**

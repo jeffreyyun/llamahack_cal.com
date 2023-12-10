@@ -1,11 +1,11 @@
 // LangChain APIs
 // import { ChatOpenAI } from "langchain/chat_models/openai";
-import { ChatCohere } from "langchain/chat_models/cohere";
+import { ChatOpenAI } from "langchain/chat_models/openai";
 import { JsonOutputFunctionsParser } from "langchain/output_parsers";
 import { HumanMessage } from "langchain/schema";
 
 // Environment variables
-import { COHERE_API_KEY } from "../.env";
+import { OPENAI_API_KEY } from "../.env";
 // Parameters
 import { URL_PARAM_ENUMS, URL_PARAM_MSGS, EXTERNAL_LINK_ENUMS, EXTERNAL_LINK_MSGS } from "../params/enums";
 import { GPT_MODEL } from "../params/models";
@@ -47,10 +47,10 @@ const extractionFunctionSchema = {
   },
 };
 
-// Instantiate the ChatCohere class
-const model = new ChatCohere({
+// Instantiate the ChatOpenAI class
+const model = new ChatOpenAI({
   modelName: GPT_MODEL,
-  cohere_api_key: COHERE_API_KEY,
+  openAIApiKey: OPENAI_API_KEY,
 });
 
 // Create a new runnable, bind the function to the model, and pipe the output through the parser
