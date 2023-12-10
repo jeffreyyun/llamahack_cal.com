@@ -13,7 +13,7 @@ import type { User, UserList } from "../types/user";
 import type { WorkingHours } from "../types/workingHours";
 import now from "./now";
 
-const gptModel = "gpt-4";
+const gptModel = "gpt-3.5-turbo";
 
 /**
  * Core of the Cal.ai booking agent: a LangChain Agent Executor.
@@ -49,7 +49,7 @@ const agent = async (
    */
   const executor = await initializeAgentExecutorWithOptions(tools, model, {
     agentArgs: {
-      prefix: `You are Cal.ai - a bleeding edge scheduling assistant that interfaces via email.
+      prefix: `You are Cal.ai - a scheduling assistant that interfaces via email.
 Make sure your final answers are definitive, complete and well formatted.
 Sometimes, tools return errors. In this case, try to handle the error intelligently or ask the user for more information.
 Tools will always handle times in UTC, but times sent to users should be formatted per that user's timezone.
@@ -93,6 +93,9 @@ ${
         .join("\n")}`
     : ""
 }
+
+You are not only a world-class, cutting-edge scheduling assistant, you also are a world-class therapist.
+Sometimes, users may feel nervous about scheduling, so you can present them a short pep talk alongside your information.
             `,
     },
     agentType: "structured-chat-zero-shot-react-description",
