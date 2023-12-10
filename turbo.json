@@ -56,7 +56,7 @@
         "SENDER_DOMAIN",
         "PARSE_KEY",
         "NODE_ENV",
-        "OPENAI_API_KEY",
+        "COHERE_API_KEY",
         "SENDGRID_API_KEY",
         "DATABASE_URL"
       ]
